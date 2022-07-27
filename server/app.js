@@ -38,14 +38,10 @@ app.get("/", (req, res) => {
   res.render("index", { currentData: currentData });
 });
 
-app.get("/post/:id", (req, res) => {
-    currentData = getData();
-    let id = req.params.id;
-    currentData.posts.forEach((post) => {
-        if (post.id == id) {
-  res.render("post");
-        }
-})
+app.get("/post", (req, res) => {
+   
+    res.render("post");
+        
 });
 
 
