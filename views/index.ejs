@@ -26,7 +26,7 @@
             <%  for (let i = 0; i < currentData.posts.length; i++) { %>
                     <div class="journal-container">
                         <div class="entry">
-                            <a href="/postPage/<%=currentData.posts[i].title%>" class="entry-title">
+                            <a href="/postPage/<%=currentData.posts[i].id%>" class="entry-title">
                                 <h2><%=currentData.posts[i].title%></h2>
                              </a>
                              <div class="entry-info">
@@ -37,7 +37,7 @@
                                 </div>
                              </div>
                             <p><%=currentData.posts[i].text.substring(0, 100) + " ..."%></p>
-                            <a href="/postPage/<%=currentData.posts[i].title%>">Read More</a>
+                            <a href="/postPage/<%=currentData.posts[i].id%>">Read More</a>
                             <div class="entry-interactions">
                                 <div class="emoji-divs comment"><a href="" class="comment-link"><i class="fa-regular fa-comment fa-lg"></i></a><span>0</span></div>
                                 <div class="emoji-divs like"><i class="fa-regular fa-thumbs-up fa-lg" id="like-reaction"></i><span>0</span></div>

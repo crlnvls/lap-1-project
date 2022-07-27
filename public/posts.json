@@ -5,7 +5,9 @@
       "title": "title 1",
       "text": "text for the first post",
       "comments": [
-        "wow the first post!"
+        "wow the first post!",
+        "will this show?",
+        "and this one?"
       ]
     },
     {
@@ -20,7 +22,12 @@
       "id": 3,
       "title": "title number 3",
       "text": "text for post 3",
-      "comments": []
+      "comments": [
+        "",
+        "",
+        "",
+        "is this working now?"
+      ]
     },
     {
       "id": 4,
@@ -32,37 +39,9 @@
       "id": 5,
       "title": "is this really working",
       "text": "is this really working?",
-      "comments": []
-    },
-    {
-      "id": 6,
-      "title": "test",
-      "text": "test",
-      "comments": []
-    },
-    {
-      "id": 7,
-      "title": "jiwjqioejwqoi",
-      "text": "jieowqjeioqwjoieqw",
-      "comments": []
-    },
-    {
-      "id": 8,
-      "title": "edqwedqw",
-      "text": "wqeqweqw",
-      "comments": []
-    },
-    {
-      "id": 9,
-      "title": "wqeqwe",
-      "text": "eqwewqeqw",
-      "comments": []
-    },
-    {
-      "id": 10,
-      "title": "ewqeq",
-      "text": "ewqeqw",
-      "comments": []
+      "comments": [
+        "I think it is?"
+      ]
     }
   ]
 }

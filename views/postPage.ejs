@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     <script src="https://kit.fontawesome.com/701be9d26f.js" crossorigin="anonymous" defer></script>
-    <script src="./scripts/modal.js" defer></script>
-    <script src="./scripts/script.js" defer></script>
+    <script src="../scripts/modal.js" defer></script>
+    <script src="../scripts/script.js" defer></script>
     <title>X-Force</title>
 </head>
 <body>
@@ -29,11 +29,11 @@
             </div>
             <div>
                 <h2>Comments</h2>
-            <%    for (let i = 0; i < currentData.posts.comments; i++) { %>
+            <%    for (let i = 0; i < comments.length; i++) { %>
                     <p><%= comments[i] %></p>
             <%    } %>
             </div>
-            <form action="/postPage/<%= title %>" method="post">
+            <form action="/postPage/<%=id%>" method="post">
                 <input type="text" name="comment" id="comment" placeholder="Add a comment...">
                 <div>
                     <img src="" alt="" id="gifAttachment" name="gif">

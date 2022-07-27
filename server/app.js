@@ -71,26 +71,26 @@ app.post("/post", (req, res) => {
 });
 
 
-// POST request to add a comment
-app.post("/comments/:id", (req, res) => {
-  let id = req.params.id;
-  let newComment = req.body.comments;
-  let newData = getData();
-  newData.posts.forEach((post) => {
-    if (post.id == id) {
-      post.comments.push(newComment);
-    }
-  });
-  let myJson = JSON.stringify(newData, null, 2);
-  fs.writeFileSync("../public/post.json", myJson, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("../public/post.json");
-    }
-  });
-  res.redirect("/");
-});
+// // POST request to add a comment
+// app.post("/postPage/:id", (req, res) => {
+//   let id = req.params.id;
+//   let newComment = req.body.comments;
+//   let newData = getData();
+//   newData.posts.forEach((post) => {
+//     if (post.id == id) {
+//       post.comments.push(newComment);
+//     }
+//   });
+//   let myJson = JSON.stringify(newData, null, 2);
+//   fs.writeFileSync("../public/post.json", myJson, (err) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("../public/post.json");
+//     }
+//   });
+//   res.redirect("/");
+// });
 
 
 // DELETE request to remove a post from post.JSON
@@ -113,31 +113,48 @@ app.delete("/posts/:id", (req, res) => {
 });
 
 
-app.get("/postPage/:postName", (req, res) => {
-  let postName = _.lowerCase(req.params.postName);
-  currentData = getData();
-  for (let i = 0; i < currentData.posts.length; i++) {
-    if (_.lowerCase(currentData.posts[i].title) === postName) {
-      res.render("postPage", {
-        title: currentData.posts[i].title,
-        text: currentData.posts[i].text,
+app.get("/postPage/:id", (req, res) => {
+    let postId = Number(req.params.id);
+    currentData = getData();
+
+    for (let i = 0; i < currentData.posts.length; i++) {
+        if (postId == currentData.posts[i].id) {
+            res.render("postPage", {
+                title: currentData.posts[i].title,
+                text: currentData.posts[i].text,
+                comments: currentData.posts[i].comments,
+                id: currentData.posts[i].id
       });
     }
   }
 });
 
-app.post("/postPage/:postName", (req, res) => {
-    let postName = _.lowerCase(req.params.postName);
+
+app.post("/postPage/:id", (req, res) => {
+    let postId = Number(req.params.id)
+    let newComment = req.body.comment
     currentData = getData();
+
     for (let i = 0; i < currentData.posts.length; i++) {
-      if (_.lowerCase(currentData.posts[i].title) === postName) {
+        console.log(currentData.posts[i].id);
+      if (postId == currentData.posts[i].id) {
+         currentData.posts[i].comments.push(newComment);
+        let myJSON = JSON.stringify(currentData, null, 2);
+        fs.writeFileSync("./public/posts.json", myJSON);
         res.render("postPage", {
-          title: currentData.posts[i].title,
-          text: currentData.posts[i].text,
-        });
-      }
+            title: currentData.posts[i].title,
+            text: currentData.posts[i].text,
+            comments: currentData.posts[i].comments,
+            id: currentData.posts[i].id
+            })
+        }else {
+            // res.send("action failed!")
+        }
     }
-  });
+});
+          
+    
+    
 
 module.exports = app;
 
