@@ -83,6 +83,19 @@ const hates = document.getElementsByClassName("hate");
     });
 });
 
+const comments = document.getElementsByClassName("comments");
+// for each button
+[...comments].forEach((e) => {
+        //get reference to the click thing
+        const holder = e.currentTarget;
+        //get reference to span
+        const span = holder.querySelector("span");
+        //change the text
+        span.textContent= 1 + Number(span.textContent);
+        
+    });
+    
+
 
 
 

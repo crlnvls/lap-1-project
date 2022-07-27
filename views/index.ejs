@@ -39,14 +39,15 @@
                             <p><%=currentData.posts[i].text.substring(0, 100) + " ..."%></p>
                             <a href="/postPage/<%=currentData.posts[i].id%>">Read More</a>
                             <div class="entry-interactions">
-                                <div class="emoji-divs comment"><a href="" class="comment-link"><i class="fa-regular fa-comment fa-lg"></i><span><%=currentData.posts[i].comments.length%></span></a></div>
+                                <div class="emoji-divs comment"><a href="" class="comment-link"><i class="fa-regular fa-comment fa-lg"></i><span> <%=currentData.posts[i].comments.length%> </span></a></div>
                                 <div class="emoji-divs like">
                                     <i class="fa-regular fa-thumbs-up fa-lg"></i>
                                     <span class = "like-reaction"><%=currentData.posts[i].reactions["like"]%></span></div>
                                 <div class="emoji-divs heart">
                                     <i class="fa-regular fa-heart fa-lg heart-reaction"></i>
                                     <span class="love-reaction"><%=currentData.posts[i].reactions["love"]%></span></div>
-                                <div class="emoji-divs hate"><i class="far fa-thumbs-down" id="hate-reaction"></i></i><span>0</span></div>
+                                <div class="emoji-divs hate">
+                                    <i class="far fa-thumbs-down hate-reaction"></i><span><%=currentData.posts[i].reactions["hate"]%></span></div>
                             </div>
                         </div>
                     </div>

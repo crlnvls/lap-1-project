@@ -98,24 +98,24 @@ app.post("/post", (req, res) => {
 // });
 
 
-// DELETE request to remove a post from post.JSON
-app.delete("/posts/:id", (req, res) => {
-  let id = req.params.id;
-  let currentData = getData();
-  //Iterate through data to match the ID
-  currentData.posts.forEach((post) => {
-    if (post.id == id) {
-      //Cut out the data with the matching ID and rewrite the file
-      currentData.posts.splice(id - 1, 1);
-      let myJSON = JSON.stringify(currentData, null, 2);
-      fs.writeFileSync("../public/post.json", myJSON);
-    } else {
-      console.log(post);
-    }
-  });
-  console.log(currentData.posts);
-  res.send("Deletion Complete!");
-});
+// // DELETE request to remove a post from post.JSON
+// app.delete("/posts/:id", (req, res) => {
+//   let id = req.params.id;
+//   let currentData = getData();
+//   //Iterate through data to match the ID
+//   currentData.posts.forEach((post) => {
+//     if (post.id == id) {
+//       //Cut out the data with the matching ID and rewrite the file
+//       currentData.posts.splice(id - 1, 1);
+//       let myJSON = JSON.stringify(currentData, null, 2);
+//       fs.writeFileSync("../public/post.json", myJSON);
+//     } else {
+//       console.log(post);
+//     }
+//   });
+//   console.log(currentData.posts);
+//   res.send("Deletion Complete!");
+// });
 
 
 app.get("/postPage/:id", (req, res) => {
