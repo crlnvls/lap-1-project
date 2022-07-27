@@ -32,19 +32,20 @@ function storeData(req) {
   fs.writeFileSync("./public/posts.json", myJSON);
 }
 
-
+// GET request for homepage
 app.get("/", (req, res) => {
   currentData = getData();
   res.render("index", { currentData: currentData });
 });
 
+//GET request for posting page
 app.get("/post", (req, res) => {
    
     res.render("post");
         
 });
 
-
+//POST request to post new entry to post.JSON
 app.post("/post", (req, res) => {
   data = req.body;
   currentData = getData();
@@ -68,7 +69,9 @@ app.post("/post", (req, res) => {
   });
   res.redirect("/");
 });
-// Add comments
+
+
+// POST request to add a comment
 app.post("/comments/:id", (req, res) => {
   let id = req.params.id;
   let newComment = req.body.comments;
@@ -90,7 +93,7 @@ app.post("/comments/:id", (req, res) => {
 });
 
 
-// Deleting a post
+// DELETE request to remove a post from post.JSON
 app.delete("/posts/:id", (req, res) => {
   let id = req.params.id;
   let currentData = getData();
