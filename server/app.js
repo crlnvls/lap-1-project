@@ -35,6 +35,7 @@ function storeData(req) {
 
 app.get("/", (req, res) => {
   currentData = getData();
+  console.log(currentData);
   res.render("index", { currentData: currentData });
 });
 
@@ -121,6 +122,18 @@ app.get("/postPage/:postName", (req, res) => {
   }
 });
 
+app.post("/postPage/:postName", (req, res) => {
+    let postName = _.lowerCase(req.params.postName);
+    currentData = getData();
+    for (let i = 0; i < currentData.posts.length; i++) {
+      if (_.lowerCase(currentData.posts[i].title) === postName) {
+        res.render("postPage", {
+          title: currentData.posts[i].title,
+          text: currentData.posts[i].text,
+        });
+      }
+    }
+  });
 
 module.exports = app;
 
