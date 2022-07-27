@@ -17,7 +17,7 @@ app.use(express.static("public"));
 app.use(express.static("../client/public"));
 
 
-
+//Function to retrieve data for posts.json
 function getData() {
   let data = fs.readFileSync("./public/posts.json");
   data = JSON.parse(data);
@@ -35,12 +35,17 @@ function storeData(req) {
 
 app.get("/", (req, res) => {
   currentData = getData();
-  console.log(currentData);
   res.render("index", { currentData: currentData });
 });
 
-app.get("/post", (req, res) => {
+app.get("/post/:id", (req, res) => {
+    currentData = getData();
+    let id = req.params.id;
+    currentData.posts.forEach((post) => {
+        if (post.id == id) {
   res.render("post");
+        }
+})
 });
 
 
