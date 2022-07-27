@@ -19,17 +19,17 @@ app.use(express.static("../client/public"));
 
 
 function getData() {
-  let data = fs.readFileSync("../client/post.json");
+  let data = fs.readFileSync("../public/post.json");
   data = JSON.parse(data);
   return data;
 }
 
 //Function to store data
 function storeData(req) {
-  data = getData("../client/post.json");
+  data = getData("../public/post.json");
   data.posts.push(req);
   let myJSON = JSON.stringify(data, null, 2);
-  fs.writeFileSync("../client/post.json", myJSON);
+  fs.writeFileSync("../public/post.json", myJSON);
 }
 
 
@@ -77,11 +77,11 @@ app.post("/comments/:id", (req, res) => {
     }
   });
   let myJson = JSON.stringify(newData, null, 2);
-  fs.writeFileSync("../client/post.json", myJson, (err) => {
+  fs.writeFileSync("../public/post.json", myJson, (err) => {
     if (err) {
       console.log(err);
     } else {
-      console.log("../client/post.json");
+      console.log("../public/post.json");
     }
   });
   res.redirect("/");
@@ -98,7 +98,7 @@ app.delete("/posts/:id", (req, res) => {
       //Cut out the data with the matching ID and rewrite the file
       currentData.posts.splice(id - 1, 1);
       let myJSON = JSON.stringify(currentData, null, 2);
-      fs.writeFileSync("../client/post.json", myJSON);
+      fs.writeFileSync("../public/post.json", myJSON);
     } else {
       console.log(post);
     }
