@@ -66,6 +66,11 @@ app.post("/post", (req, res) => {
     title: title,
     text: text,
     comments: [],
+    reactions: {
+        like: 0,
+        love: 0,
+        hate: 0,
+    },
   });
   res.redirect("/");
 });
@@ -131,27 +136,50 @@ app.get("/postPage/:id", (req, res) => {
 
 
 app.post("/postPage/:id", (req, res) => {
-    let postId = Number(req.params.id)
-    let newComment = req.body.comment
-    currentData = getData();
 
-    for (let i = 0; i < currentData.posts.length; i++) {
-        console.log(currentData.posts[i].id);
-      if (postId == currentData.posts[i].id) {
-         currentData.posts[i].comments.push(newComment);
-        let myJSON = JSON.stringify(currentData, null, 2);
-        fs.writeFileSync("./public/posts.json", myJSON);
-        res.render("postPage", {
-            title: currentData.posts[i].title,
-            text: currentData.posts[i].text,
-            comments: currentData.posts[i].comments,
-            id: currentData.posts[i].id
-            })
-        }else {
-            // res.send("action failed!")
+    if (req.body.button == "Post") {
+        let postId = Number(req.params.id)
+        let newComment = req.body.comment
+        currentData = getData();
+        console.log(req.body);
+
+        for (let i = 0; i < currentData.posts.length; i++) {
+            if (postId == currentData.posts[i].id) {
+                currentData.posts[i].comments.push(newComment);
+                let myJSON = JSON.stringify(currentData, null, 2);
+                fs.writeFileSync("./public/posts.json", myJSON);
+                res.render("postPage", {
+                    title: currentData.posts[i].title,
+                    text: currentData.posts[i].text,
+                    comments: currentData.posts[i].comments,
+                    id: currentData.posts[i].id
+            
+                })
+            }
+        
         }
-    }
+    } else if (req.body.button == "Delete journal entry") {
+            // DELETE request to remove a post from post.JSON
+            console.log(req.body)
+        
+            let id = req.params.id;
+            let currentData = getData();
+             //Iterate through data to match the ID
+            currentData.posts.forEach((post) => {
+                if (post.id == id) {
+            //Cut out the data with the matching ID and rewrite the file
+                    currentData.posts.splice(id - 1, 1);
+                    let myJSON = JSON.stringify(currentData, null, 2);
+                    fs.writeFileSync("./public/posts.json", myJSON);
+                    res.redirect("/");
+                }            
+    });
+    
+}
+
 });
+    
+
           
     
     

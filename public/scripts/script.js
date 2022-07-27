@@ -41,6 +41,48 @@ function pasteGif () {
         
 }
 
+const likes = document.getElementsByClassName("like");
+// for each button
+[...likes].forEach((l) => {
+    //add an event listener
+    l.addEventListener("click", (e) => {
+        //get reference to the click thing
+        const holder = e.currentTarget;
+        //get reference to span
+        const span = holder.querySelector("span");
+        //change the text
+        span.textContent= 1 + Number(span.textContent);
+    });
+});
+
+const loves = document.getElementsByClassName("heart");
+// for each button
+[...loves].forEach((l) => {
+    //add an event listener
+    l.addEventListener("click", (e) => {
+        //get reference to the click thing
+        const holder = e.currentTarget;
+        //get reference to span
+        const span = holder.querySelector("span");
+        //change the text
+        span.textContent= 1 + Number(span.textContent);
+    });
+});
+
+const hates = document.getElementsByClassName("hate");
+// for each button
+[...hates].forEach((l) => {
+    //add an event listener
+    l.addEventListener("click", (e) => {
+        //get reference to the click thing
+        const holder = e.currentTarget;
+        //get reference to span
+        const span = holder.querySelector("span");
+        //change the text
+        span.textContent= 1 + Number(span.textContent);
+    });
+});
+
 
 
 
