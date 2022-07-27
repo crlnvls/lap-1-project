@@ -1,0 +1,32 @@
+{
+    "posts": [
+      {
+          "id": 1,
+          "title": "title 1",
+          "text": "text for the first post",
+          "comments": [
+          "wow the first post!"
+          ]
+      },
+      {
+        "id": 2,
+        "title": "title 2",
+        "text": "text for the second post",
+        "comments": [
+          "damn i was second!"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "title number 3",
+        "text": "text for post 3",
+        "comments": []
+      },
+      {
+        "id": 4,
+        "title": "title number 4",
+        "text": "text for post 4",
+        "comments": []
+      }
+    ]
+  }

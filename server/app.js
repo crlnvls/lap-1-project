@@ -4,13 +4,13 @@ const fs = require("fs");
 const ejs = require("ejs");
 const _ = require("lodash");
 const path = require("path");
-const posts = require("../client/post.json");
-const cors = require("cors");
+// const posts = require("../public/post.json");
+// const cors = require("cors");
 const app = express();
 
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
