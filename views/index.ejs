@@ -25,7 +25,7 @@
             <div class="container journals">
             <%  let posts = function getData() {
                 let data = fs.readFileSync("./public/posts.json");
-                data = JSON.parse(data);
+                <!-- data = JSON.parse(data); -->
                 return data;
               }; 
               for (let i = 0; i < posts.length; i++) { %>
