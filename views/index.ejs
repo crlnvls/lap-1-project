@@ -23,8 +23,12 @@
         </header>
         <main>
             <div class="container journals">
-
-            <%    for (let i = 0; i < posts.length; i++) { %>
+            <%  let posts = function getData() {
+                let data = fs.readFileSync("./public/posts.json");
+                data = JSON.parse(data);
+                return data;
+              }; 
+              for (let i = 0; i < posts.length; i++) { %>
                     <div class="journal-container">
                         <div class="entry">
                             <a href="/postPage/<%=posts[i].title%>" class="entry-title">

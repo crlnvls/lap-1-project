@@ -4,7 +4,7 @@ const fs = require("fs");
 const ejs = require("ejs");
 const _ = require("lodash");
 const path = require("path");
-// const posts = require("../public/post.json");
+let posts = ("./public/posts.json");
 // const cors = require("cors");
 const app = express();
 
@@ -19,17 +19,17 @@ app.use(express.static("../client/public"));
 
 
 function getData() {
-  let data = fs.readFileSync("../public/post.json");
+  let data = fs.readFileSync("./public/posts.json");
   data = JSON.parse(data);
   return data;
 }
 
 //Function to store data
 function storeData(req) {
-  data = getData("../public/post.json");
+  data = getData("./public/posts.json");
   data.posts.push(req);
   let myJSON = JSON.stringify(data, null, 2);
-  fs.writeFileSync("../public/post.json", myJSON);
+  fs.writeFileSync("./public/posts.json", myJSON);
 }
 
 
