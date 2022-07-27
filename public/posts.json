@@ -4,41 +4,23 @@
       "id": 1,
       "title": "title 1",
       "text": "text for the first post",
-      "comments": [
-        "wow the first post!"
-      ]
+      "comments": ["wow the first post!", "aa", "aa"],
+      "reactions": {
+        "like": 0,
+        "love": 0,
+        "hate": 0
+      }
     },
     {
       "id": 2,
-      "title": "title 2",
-      "text": "text for the second post",
-      "comments": [
-        "damn i was second!"
-      ]
-    },
-    {
-      "id": 3,
-      "title": "title number 3",
-      "text": "text for post 3",
-      "comments": []
-    },
-    {
-      "id": 4,
-      "title": "title number 4",
-      "text": "text for post 4",
-      "comments": []
-    },
-    {
-      "id": 5,
-      "title": "is this really working",
-      "text": "is this really working?",
-      "comments": []
-    },
-    {
-      "id": 6,
-      "title": "test",
-      "text": "test",
-      "comments": []
+      "title": "aaa",
+      "text": "aa",
+      "comments": [],
+      "reactions": {
+        "like": 0,
+        "love": 0,
+        "hate": 0
+      }
     }
   ]
 }
