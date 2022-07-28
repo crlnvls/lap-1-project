@@ -1,6 +1,5 @@
 {
   "posts": [
-    
     {
       "id": 7,
       "title": "a",
@@ -9,10 +8,10 @@
       "gif": "",
       "time": "0:18 · Jul 28, 2022",
       "supervillain": "Terrible Trio",
-      "reactions" : {
-        "like": 0,
-        "love": 0,
-        "hate": 0
+      "reactions": {
+        "like": 2,
+        "love": 2,
+        "hate": 2
       }
     },
     {
