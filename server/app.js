@@ -14,7 +14,7 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
+app.use(express.static("views"));
 
 //Function to retrieve data for posts.json
 function getData() {
@@ -35,7 +35,6 @@ function storeData(req) {
 // GET request for homepage
 app.get("/", (req, res) => {
   currentData = getData();
-  //console.log(currentData);
   res.render("index", { currentData: currentData });
 });
 
