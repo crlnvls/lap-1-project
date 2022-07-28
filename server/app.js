@@ -36,7 +36,7 @@ function storeData(req) {
 app.get("/", (req, res) => {
   currentData = getData();
   //console.log(currentData);
-  res.render(__dirname + "/../views/index", { currentData: currentData });
+  res.render("index", { currentData: currentData });
 });
 
 //GET request for posting page
