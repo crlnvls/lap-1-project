@@ -6,17 +6,19 @@ const _ = require("lodash");
 const path = require("path");
 const supervillains = require('supervillains');
 let posts = ("./public/posts.json");
-// const cors = require("cors");
+const cors = require("cors");
 const app = express();
 
+
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.static("views"));
 app.use(express.static("scripts"));
 app.use(express.static("../public/scripts"));
+app.use(express.static(__dirname + "/../public"));
 
 //Function to retrieve data for posts.json
 function getData() {
@@ -187,9 +189,9 @@ app.post("/postPage/:id", (req, res) => {
                     text: currentData.posts[i].text,
                     comments: currentData.posts[i].comments,
                     id: currentData.posts[i].id,
-                    gif: currentData.posts[i].gif,
-                    date: currentData.posts[i].time,
-                    supervillain: currentData.posts[i].supervillain
+                    // gif: currentData.posts[i].gif,
+                    // date: currentData.posts[i].time,
+                    // supervillain: currentData.posts[i].supervillain
             
                 })
             }
