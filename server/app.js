@@ -82,8 +82,6 @@ app.post("/post", (req, res) => {
     
   
 
-
-
 app.get("/postPage/:id", (req, res) => {
     let postId = Number(req.params.id);
     currentData = getData();
@@ -94,57 +92,15 @@ app.get("/postPage/:id", (req, res) => {
                 title: currentData.posts[i].title,
                 text: currentData.posts[i].text,
                 comments: currentData.posts[i].comments,
-                id: currentData.posts[i].id
+                id: currentData.posts[i],
+                gif: currentData.posts[i].gif,
+                date: currentData.posts[i].time,
+                supervillain: currentData.posts[i].supervillain
 
       });
     }
   }
 });
-
-app.post("/postPage/:postName", (req, res) => {
-  currentData = getData()
-  let postName = _.lowerCase(req.params.postName);
-  let newComment = req.body.comment;
-  for (let i = 0; i < currentData.posts.length; i++) {
-    if (_.lowerCase(currentData.posts[i].title) === postName) {
-      currentData.posts[i].comments.push(newComment);
-      res.render(__dirname + "/../views/postPage", {
-        title: currentData.posts[i].title,
-        text: currentData.posts[i].text,
-        comments: currentData.posts[i].comments,
-        id: currentData.posts[i].id,
-        gif: currentData.posts[i].gif,
-        date: currentData.posts[i].time,
-        supervillain : currentData.posts[i].supervillain,
-        time: currentData.posts[i].time
-      });
-    }
-  }
-});
-
-app.post("/postPage/:id", (req, res) => {
-  let postId = Number(req.params.id)
-  let newComment = req.body.comment
-  currentData = getData();
-
-  for (let i = 0; i < currentData.posts.length; i++) {
-    if (postId === currentData.posts[i].id) {
-      currentData.posts[i].comments.push(newComment)
-      let myJSON = JSON.stringify(currentData, null, 2);
-      fs.writeFileSync("./public/posts.json", myJSON);
-      res.render(__dirname + "/../views/postPage", {
-        title: currentData.posts[i].title, 
-        text: currentData.posts[i].text, 
-        comments: currentData.posts[i].comments, 
-        id: currentData.posts[i].id,
-        gif: currentData.posts[i].gif,
-        date: currentData.posts[i].time,
-        supervillain: currentData.posts[i].supervillain
-      })
-    }
-  }
-
-})
 
 
 
@@ -229,7 +185,10 @@ app.post("/postPage/:id", (req, res) => {
                     title: currentData.posts[i].title,
                     text: currentData.posts[i].text,
                     comments: currentData.posts[i].comments,
-                    id: currentData.posts[i].id
+                    id: currentData.posts[i].id,
+                    gif: currentData.posts[i].gif,
+                    date: currentData.posts[i].time,
+                    supervillain: currentData.posts[i].supervillain
             
                 })
             }
