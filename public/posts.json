@@ -5,7 +5,7 @@
       "title": "title 1",
       "text": "text for the first post",
       "comments": [
-        "wow the first post!"
+        "Comment 1"
       ]
     },
     {
@@ -13,32 +13,69 @@
       "title": "title 2",
       "text": "text for the second post",
       "comments": [
-        "damn i was second!"
+        "Thanos!!"
       ]
     },
     {
       "id": 3,
       "title": "title number 3",
       "text": "text for post 3",
-      "comments": []
+      "comments": [
+        "Comment 1"
+      ]
     },
     {
       "id": 4,
       "title": "title number 4",
       "text": "text for post 4",
-      "comments": []
+      "comments": [
+        "Comment 4"
+      ]
     },
     {
       "id": 5,
       "title": "is this really working",
       "text": "is this really working?",
-      "comments": []
+      "comments": [
+        "Comment 1",
+        "Comment 2"
+      ]
     },
     {
       "id": 6,
-      "title": "test",
-      "text": "test",
-      "comments": []
+      "title": "John Pascual",
+      "text": "Hello, World!",
+      "comments": [],
+      "gif": "https://media0.giphy.com/media/PpeGK6edBWAxi/giphy.gif?cid=1bf19246h6ar4gf7oqof84n0ytu7an895giod9ps6z3nqjxe&rid=giphy.gif&ct=g",
+      "time": "0:8 · Jul 28, 2022",
+      "supervillain": "Attuma"
+    },
+    {
+      "id": 7,
+      "title": "a",
+      "text": "a",
+      "comments": [],
+      "gif": "",
+      "time": "0:18 · Jul 28, 2022",
+      "supervillain": "Terrible Trio"
+    },
+    {
+      "id": 8,
+      "title": "b",
+      "text": "b",
+      "comments": [],
+      "gif": "",
+      "time": "00:20 · Jul 28, 2022",
+      "supervillain": "Ventriloquist"
+    },
+    {
+      "id": 9,
+      "title": "c",
+      "text": "c",
+      "comments": [],
+      "gif": "",
+      "time": "00:21 · Jul 28, 2022",
+      "supervillain": "Ghaur"
     }
   ]
 }

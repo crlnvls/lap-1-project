@@ -23,31 +23,36 @@
         </header>
         <main>
             <div class="container journals">
-            <%  let posts = function getData() {
-                let data = fs.readFileSync("./public/posts.json");
-                <!-- data = JSON.parse(data); -->
-                return data;
-              }; 
-              for (let i = 0; i < posts.length; i++) { %>
+                <%    for (let i = 0; i < currentData.posts.length; i++) { %>
                     <div class="journal-container">
                         <div class="entry">
-                            <a href="/postPage/<%=posts[i].title%>" class="entry-title">
-                                <h2><%=posts[i].title%></h2>
-                             </a>
+                            <div>
+                                <a href="/postPage/<%=currentData.posts[i].id%>" class="entry-title">
+                                    <h2><%= currentData.posts[i].title%></h2>
+                                 </a>
+                            </div>
+                            <hr>
                              <div class="entry-info">
                                 <i class="far fa-user fa-lg icon"></i>
                                 <div>
-                                    <span>willow oceanseed</span> <br>
-                                    <span>2 hours ago</span>
+                                    <span><%= currentData.posts[i].supervillain %></span> <br>
+                                    <span><%= currentData.posts[i].time %></span>
                                 </div>
                              </div>
-                            <p><%=posts[i].text.substring(0, 100) + " ..."%></p>
-                            <a href="/postPage/<%=posts[i].title%>">Read More</a>
+                             <hr>
+                             <div>
+                                <p><%= currentData.posts[i].text.substring(0, 100) + " ..."%></p>
+                                <img src="<%= currentData.posts[i].gif %>" alt="">
+                             </div>
+                             <div>
+                                <a href="/postPage/<%=currentData.posts[i].id%>" class="read-more">Read More</a>
+                             </div>
+                             <hr>
                             <div class="entry-interactions">
-                                <div class="emoji-divs comment"><a href="" class="comment-link"><i class="fa-regular fa-comment fa-lg"></i></a><span>0</span></div>
-                                <div class="emoji-divs like"><i class="fa-regular fa-thumbs-up fa-lg" id="like-reaction"></i><span>0</span></div>
-                                <div class="emoji-divs heart"><i class="fa-regular fa-heart fa-lg" id="heart-reaction"></i><span>0</span></div>
-                                <div class="emoji-divs hate"><i class="far fa-thumbs-down" id="hate-reaction"></i></i><span>0</span></div>
+                                <div class="emoji-divs comment"><a href="" class="comment-link"><i class="fa-regular fa-comment fa-lg">0</i></a></div>
+                                <div class="emoji-divs like"><i class="fa-regular fa-thumbs-up fa-lg like-reaction">0</i></div>
+                                <div class="emoji-divs heart"><i class="fa-regular fa-heart fa-lg heart-reaction">0</i></div>
+                                <div class="emoji-divs hate"><i class="far fa-thumbs-down fa-lg hate-reaction">0</i></div>
                             </div>
                         </div>
                     </div>

@@ -25,22 +25,28 @@
         <div class="container postPageContainer">
             <div>
                 <h1><%= title %></h1>  
+                <hr>
+                <span><%= supervillain %></span> <br>
+                <span><%= date %></span>  
+                <hr>
                 <p><%= text %></p> 
+                <img src="<%= gif %>" alt="">
             </div>
             <div>
                 <h2>Comments</h2>
+                <hr>
             <%    for (let i = 0; i < comments.length; i++) { %>
-                    <p><%= comments[i] %></p>
+                    <p class="postPageComments"><%= comments[i] %></p>
+                    <hr>
             <%    } %>
             </div>
-            <form action="/postPage/<%= title %>" method="post">
+            <form action="/postPage/<%= id %>" method="post">
                 <input type="text" name="comment" id="comment" placeholder="Add a comment...">
                 <div>
                     <img src="" alt="" id="gifAttachment" name="gif">
                 </div>
                 <div class="button-div">
-                    <!-- <input type="button" id="myBtn" value="Giphy"> -->
-                    <input type="submit" name="button" value="Post">
+                    <input type="submit" name="button" value="Add comment">
                 </div>
             </form>
         </div>
