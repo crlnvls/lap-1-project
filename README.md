@@ -29,4 +29,4 @@ X-diary is an anonymous journaling site. It allows you to post journal entries (
 
 1. Navigate to the URL https://x-diary.herokuapp.com/
 2. The homepage displays all the current journal entries
-    ![Homepage](https://photos.google.com/photo/AF1QipMucTzqIt3-LcwhfaLPxMR6P2TDNY6dv4stUvxb)
+    ![Homepage](https://www.dropbox.com/s/79697rr8s7mupwd/Homepage.jpg?dl=0)
