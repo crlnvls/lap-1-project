@@ -1,5 +1,9 @@
 # Lap 1 assignment : X-diary, anonymous journals
 
+## Badges
+
+/github/license/:Mike-Mercieca/:lap-1-project-front-end
+
 # Product Information
 
 ## Product Description
@@ -22,7 +26,7 @@ X-diary is an anonymous journaling site. It allows you to post journal entries (
 1. npm install - install the dependencies for the public folder.
 2. cd server - move into the server folder.
 3. npm install - install the dependencies for the server folder.
-4. Navigate to [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and follow instrucitons to install.
+4. Navigate to [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and follow instructions to install.
 5. heroku local - run the application on the local Heroku server.
 
 ## Usage
@@ -51,5 +55,26 @@ X-diary is an anonymous journaling site. It allows you to post journal entries (
 8. To delete a post, navigate to the post, then press the delete post button.
     ![delete a post](/READMEAssets/delete.gif)
 
-    
+
+
+## Wins & Challeneges
+
+# Challenges
+
+* Passing the GIF image to the server for storage via a form.
+* Storing the number of reactions that the emoji had recieved on click.
+* Having a list of hidden GIF's that appeared on button press.
+* Getting all the GET and POST pathing to match up with where they need to be.
+* Merging two sets of code towards the end of the project.
+* Using JSON.parse and JSON.stringify in the correct places to get the correct data type.
+
+
+# Wins
+
+* The look of the website.
+* The reactional layout of the cards.
+* Realising that EJS was going to cause us to have to totally change the way we host the app but learning the necessary things to get it working.
+* Creating an if/else statement that listens to two POST requests and decides what to do with it.
+* Creating tests for the backend routing.
+
 
