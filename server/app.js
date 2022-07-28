@@ -94,7 +94,7 @@ app.get("/postPage/:id", (req, res) => {
                 title: currentData.posts[i].title,
                 text: currentData.posts[i].text,
                 comments: currentData.posts[i].comments,
-                id: currentData.posts[i],
+                id: currentData.posts[i].id,
                 gif: currentData.posts[i].gif,
                 date: currentData.posts[i].time,
                 supervillain: currentData.posts[i].supervillain
@@ -172,14 +172,16 @@ app.post("/reactions", (req, res) => {
 // Response to POST request on postPage 
 app.post("/postPage/:id", (req, res) => {
 // Listens to which button has been selected
-    if (req.body.button == "Post") {
+    if (req.body.button == "Add comment") {
+      console.log("hello")
         let postId = Number(req.params.id)
         let newComment = req.body.comment
         currentData = getData();
-        console.log(req.body);
+      
 
         for (let i = 0; i < currentData.posts.length; i++) {
             if (postId == currentData.posts[i].id) {
+              console.log("add");
                 currentData.posts[i].comments.push(newComment);
                 let myJSON = JSON.stringify(currentData, null, 2);
                 fs.writeFileSync("./public/posts.json", myJSON);
@@ -188,9 +190,9 @@ app.post("/postPage/:id", (req, res) => {
                     text: currentData.posts[i].text,
                     comments: currentData.posts[i].comments,
                     id: currentData.posts[i].id,
-                    // gif: currentData.posts[i].gif,
-                    // date: currentData.posts[i].time,
-                    // supervillain: currentData.posts[i].supervillain
+                    gif: currentData.posts[i].gif,
+                    date: currentData.posts[i].time,
+                    supervillain: currentData.posts[i].supervillain
             
                 })
             }
@@ -198,13 +200,14 @@ app.post("/postPage/:id", (req, res) => {
         }
     } else if (req.body.button == "Delete journal entry") {
             // DELETE request to remove a post from post.JSON
-            console.log(req.body)
         
             let id = req.params.id;
             let currentData = getData();
+      
              //Iterate through data to match the ID
             currentData.posts.forEach((post) => {
                 if (post.id == id) {
+                  console.log("delete");
             //Cut out the data with the matching ID and rewrite the file
                     currentData.posts.splice(id - 1, 1);
                     let myJSON = JSON.stringify(currentData, null, 2);

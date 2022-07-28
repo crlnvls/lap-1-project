@@ -57,7 +57,7 @@ const likes = document.getElementsByClassName("like");
     span.textContent = 1 + Number(span.textContent);
 
     // tell the server that the post have been liked
-    const url = "https://x-diary.herokuapp.com/reactions";
+    const url = "https://x-diary.herokuapp.comreactions";
     const options = {
       method: "post",
       headers: {
