@@ -57,7 +57,7 @@ const likes = document.getElementsByClassName("like");
     span.textContent = 1 + Number(span.textContent);
 
     // tell the server that the post have been liked
-    const url = "http://localhost:3000/reactions";
+    const url = "https://x-diary.herokuapp.com/reactions";
     const options = {
       method: "post",
       headers: {
@@ -90,7 +90,7 @@ const loves = document.getElementsByClassName("heart");
     span.textContent = 1 + Number(span.textContent);
 
     // tell the server that the post have been liked
-    const url = "http://localhost:3000/reactions";
+    const url = "https://x-diary.herokuapp.com/reactions";
     const options = {
       method: "post",
       headers: {
@@ -123,7 +123,7 @@ const hates = document.getElementsByClassName("hate");
     span.textContent = 1 + Number(span.textContent);
 
     // tell the server that the post have been liked
-    const url = "http://localhost:3000/reactions";
+    const url = "https://x-diary.herokuapp.com/reactions";
     const options = {
       method: "post",
       headers: {

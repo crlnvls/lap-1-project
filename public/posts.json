@@ -24,6 +24,20 @@
         "love": 0,
         "hate": 0
       }
+    },
+    {
+      "id": 8,
+      "title": "random post 5",
+      "text": "this is a random post",
+      "comments": [],
+      "gif": "",
+      "time": "11:10 · Jul 28, 2022",
+      "supervillain": "Rad",
+      "reactions": {
+        "like": 5,
+        "love": 0,
+        "hate": 0
+      }
     }
   ]
 }
