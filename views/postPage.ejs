@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/css/styles.css" />
-    <script
-      src="https://kit.fontawesome.com/701be9d26f.js"
-      crossorigin="anonymous"
-      defer
-    ></script>
-    <script src="./scripts/modal.js" defer></script>
-    <script src="./scripts/script.js" defer></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://kit.fontawesome.com/701be9d26f.js" crossorigin="anonymous" defer></script>
+    <script src="../scripts/modal.js" defer></script>
+    <script src="../scripts/script.js" defer></script>
     <title>X-Force</title>
   </head>
   <body>
@@ -29,16 +22,32 @@
       </div>
     </header>
     <main>
-      <div class="container postPageContainer">
-        <div>
-          <h1><%= title %></h1>
-          <p><%= text %></p>
-        </div>
-        <div>
-          <h2>Comments</h2>
-          <% for (let i = 0; i < comments.length; i++) { %>
-          <p><%= comments[i] %></p>
-          <% } %>
+        <div class="container postPageContainer">
+            <div>
+                <h1><%= title %></h1>  
+                <p><%= text %></p> 
+            </div>
+            <div>
+                <h2>Comments</h2>
+            <%    for (let i = 0; i < comments.length; i++) { %>
+                    <p><%= comments[i] %></p>
+            <%    } %>
+            </div>
+            <form action="/postPage/<%=id%>" method="post">
+                <input type="text" name="comment" id="comment" placeholder="Add a comment...">
+                <div>
+                    <img src="" alt="" id="gifAttachment" name="gif">
+                </div>
+                <div class="button-div">
+                    <!-- <input type="button" id="myBtn" value="Giphy"> -->
+                    <input type="submit" name="button" value="Post">
+                </div>
+                <div class="button-div">
+                    <input type="submit" name="button" value="Delete journal entry">
+                </div>
+                
+            
+
         </div>
         <form action="/postPage/<%= title %>" method="post">
           <input

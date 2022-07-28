@@ -13,9 +13,11 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(express.static("views"));
-app.use(express.static("../views"));
-app.use(express.static("../public"));
+
+app.use(express.static("../client/public"));
+
+
+//Function to retrieve data for posts.json
 
 function getData() {
   let data = fs.readFileSync("../public/posts.json");
@@ -31,15 +33,24 @@ function storeData(req) {
   fs.writeFileSync("../public/posts.json", myJSON);
 }
 
+
+// GET request for homepage
+
 app.get("/", (req, res) => {
   currentData = getData();
   //console.log(currentData);
   res.render(__dirname + "/../views/index", { currentData: currentData });
 });
 
+//GET request for posting page
 app.get("/post", (req, res) => {
-  res.render(__dirname + "/../views/post");
+
+   
+    res.render("post");
+        
 });
+
+//POST request to post new entry to post.JSON
 
 app.post("/post", (req, res) => {
   data = req.body;
@@ -63,9 +74,9 @@ app.post("/post", (req, res) => {
     text: text,
     comments: [],
     reactions: {
-      like: 0,
-      love: 0,
-      hate: 0,
+        like: 0,
+        love: 0,
+        hate: 0,
     },
   });
   res.redirect("/");
@@ -73,7 +84,29 @@ app.post("/post", (req, res) => {
 
 // Stores reactions to json file
 
-// Deleting a post
+// // POST request to add a comment
+// app.post("/postPage/:id", (req, res) => {
+//   let id = req.params.id;
+//   let newComment = req.body.comments;
+//   let newData = getData();
+//   newData.posts.forEach((post) => {
+//     if (post.id == id) {
+//       post.comments.push(newComment);
+//     }
+//   });
+//   let myJson = JSON.stringify(newData, null, 2);
+//   fs.writeFileSync("../public/post.json", myJson, (err) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("../public/post.json");
+//     }
+//   });
+//   res.redirect("/");
+// });
+
+
+// DELETE request to remove a post from post.JSON
 app.delete("/posts/:id", (req, res) => {
   let id = req.params.id;
   let currentData = getData();
@@ -92,15 +125,20 @@ app.delete("/posts/:id", (req, res) => {
   res.send("Deletion Complete!");
 });
 
-app.get("/postPage/:postName", (req, res) => {
-  let postName = _.lowerCase(req.params.postName);
-  currentData = getData();
-  for (let i = 0; i < currentData.posts.length; i++) {
-    if (_.lowerCase(currentData.posts[i].title) === postName) {
-      res.render(__dirname + "/../views/postPage", {
-        title: currentData.posts[i].title,
-        text: currentData.posts[i].text,
-        comments: currentData.posts[i].comments,
+
+
+app.get("/postPage/:id", (req, res) => {
+    let postId = Number(req.params.id);
+    currentData = getData();
+
+    for (let i = 0; i < currentData.posts.length; i++) {
+        if (postId == currentData.posts[i].id) {
+            res.render("postPage", {
+                title: currentData.posts[i].title,
+                text: currentData.posts[i].text,
+                comments: currentData.posts[i].comments,
+                id: currentData.posts[i].id
+
       });
     }
   }
@@ -122,6 +160,7 @@ app.post("/postPage/:postName", (req, res) => {
     }
   }
 });
+
 
 //Add count reactions
 app.post("/reactions", (req, res) => {
@@ -145,20 +184,56 @@ app.post("/reactions", (req, res) => {
     }
   }
 
-  // currentData.posts.forEach((post) => {
-  //   if (reactionPostId === post.id) {
-  //     post.reactions.hate += 1;
-  //     // console.log(post.reactions);
-  //   }
-  // });
+app.post("/postPage/:id", (req, res) => {
 
-  //  Update the post's number of [whatever reaction] by one
-  // Save all the changed data
-  // let myJSON = JSON.stringify(currentData.posts, null, 2);
-  // fs.writeFileSync("../public/posts.json", myJSON);
+    if (req.body.button == "Post") {
+        let postId = Number(req.params.id)
+        let newComment = req.body.comment
+        currentData = getData();
+        console.log(req.body);
 
-  // res.json({
-  //   success: true,
-  // });
+        for (let i = 0; i < currentData.posts.length; i++) {
+            if (postId == currentData.posts[i].id) {
+                currentData.posts[i].comments.push(newComment);
+                let myJSON = JSON.stringify(currentData, null, 2);
+                fs.writeFileSync("./public/posts.json", myJSON);
+                res.render("postPage", {
+                    title: currentData.posts[i].title,
+                    text: currentData.posts[i].text,
+                    comments: currentData.posts[i].comments,
+                    id: currentData.posts[i].id
+            
+                })
+            }
+        
+        }
+    } else if (req.body.button == "Delete journal entry") {
+            // DELETE request to remove a post from post.JSON
+            console.log(req.body)
+        
+            let id = req.params.id;
+            let currentData = getData();
+             //Iterate through data to match the ID
+            currentData.posts.forEach((post) => {
+                if (post.id == id) {
+            //Cut out the data with the matching ID and rewrite the file
+                    currentData.posts.splice(id - 1, 1);
+                    let myJSON = JSON.stringify(currentData, null, 2);
+                    fs.writeFileSync("./public/posts.json", myJSON);
+                    res.redirect("/");
+                }            
+    });
+    
+}
+
 });
+    
+
+          
+    
+    
+
 module.exports = app;
+
+
+  
