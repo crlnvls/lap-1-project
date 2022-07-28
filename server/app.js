@@ -33,7 +33,7 @@ function storeData(req) {
 
 app.get("/", (req, res) => {
   currentData = getData();
-  console.log(currentData);
+  //console.log(currentData);
   res.render(__dirname + "/../views/index", { currentData: currentData });
 });
 
@@ -96,27 +96,28 @@ app.get("/postPage/:postName", (req, res) => {
   let postName = _.lowerCase(req.params.postName);
   currentData = getData();
   for (let i = 0; i < currentData.posts.length; i++) {
-    if (_.lowerCase(currentData.posts[i].id) === postName) {
+    if (_.lowerCase(currentData.posts[i].title) === postName) {
       res.render(__dirname + "/../views/postPage", {
         title: currentData.posts[i].title,
         text: currentData.posts[i].text,
-        comments: currentData.posts[i].comment,
+        comments: currentData.posts[i].comments,
       });
     }
   }
 });
 
 app.post("/postPage/:postName", (req, res) => {
+  currentData = getData()
   let postName = _.lowerCase(req.params.postName);
   let newComment = req.body.comment;
-  for (let i = 0; i < posts.length; i++) {
-    if (_.lowerCase(posts[i].title) === postName) {
-      posts[i].comments.push(newComment);
-      res.render("postPage", {
-        title: posts[i].title,
-        text: posts[i].text,
-        comments: posts[i].comments,
-        time: posts[i].time,
+  for (let i = 0; i < currentData.posts.length; i++) {
+    if (_.lowerCase(currentData.posts[i].title) === postName) {
+      currentData.posts[i].comments.push(newComment);
+      res.render(__dirname + "/../views/postPage", {
+        title: currentData.posts[i].title,
+        text: currentData.posts[i].text,
+        comments: currentData.posts[i].comments,
+        time: currentData.posts[i].time,
       });
     }
   }
@@ -125,26 +126,39 @@ app.post("/postPage/:postName", (req, res) => {
 //Add count reactions
 app.post("/reactions", (req, res) => {
   const currentData = getData();
-  // console.log(req.body);
-  console.log(req.body.reaction);
-
-  // Find the post with that id
-
-  let reactionPostId = Number(req.body.post);
-  currentData.posts.forEach((post) => {
-    if (reactionPostId === post.id) {
-      post.reactions.hate += 1;
-      // console.log(post.reactions);
+  //console.log(typeof req.body.reaction); //string
+  //console.log(typeof req.body.post) //string
+  let postId = Number(req.body.post)
+  //console.log(postId, typeof postId) //number
+  //Find the post with that id
+  let reactionType = req.body.reaction
+  //reaction.hate
+  //obj.reactions["hate"]
+  //console.log(typeof currentData[0].reactions.like) // 0 number
+  //console.log(currentData.posts[0].reactions[`${reactionType}`]) // <========== OH MY GODDDD!!!! ==========>
+  for (let i = 0; i < currentData.posts.length; i++) {
+    if (currentData.posts[i].id === postId) {
+      currentData.posts[i].reactions[reactionType] += 1
+      let myJSON = JSON.stringify(currentData, null, 2);
+      fs.writeFileSync("../public/posts.json", myJSON);
+      //console.log(currentData.posts[i].reactions[`${reactionType}`])
     }
-  });
+  }
+
+  // currentData.posts.forEach((post) => {
+  //   if (reactionPostId === post.id) {
+  //     post.reactions.hate += 1;
+  //     // console.log(post.reactions);
+  //   }
+  // });
 
   //  Update the post's number of [whatever reaction] by one
   // Save all the changed data
-  let myJSON = JSON.stringify(currentData.posts, null, 2);
-  fs.writeFileSync("../public/post.json", myJSON);
+  // let myJSON = JSON.stringify(currentData.posts, null, 2);
+  // fs.writeFileSync("../public/posts.json", myJSON);
 
-  res.json({
-    success: true,
-  });
+  // res.json({
+  //   success: true,
+  // });
 });
 module.exports = app;
