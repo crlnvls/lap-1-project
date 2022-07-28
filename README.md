@@ -18,6 +18,8 @@ X-diary is an anonymous journaling site. It allows you to post journal entries (
 * Node Express
 * EJS
 * Giphy API
+* Jest 
+* Supertest
 
 # Installation & Usage
 
@@ -83,7 +85,8 @@ X-diary is an anonymous journaling site. It allows you to post journal entries (
 
 ## Future features
 
-* Search for a journal title
-* Add GIFS into comments
-* Reactions to comments
-
+* Search for a journal title.
+* Add GIFS into comments.
+* Add reactions to comments.
+* Reply to comments.
+* Add a sentiment analyser that auto-imputes emojis according to the post content's sentiment.
