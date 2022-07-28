@@ -2,56 +2,14 @@
   "posts": [
     {
       "id": 1,
-      "title": "a",
-      "text": "a",
+      "title": "id 1",
+      "text": "index 0",
       "comments": [],
       "gif": "",
-      "time": "0:18 · Jul 28, 2022",
-      "supervillain": "Terrible Trio",
-      "reactions": {
-        "like": 2,
-        "love": 2,
-        "hate": 2
-      }
-    },
-    {
-      "id": 2,
-      "title": "dsadasda",
-      "text": "dasdasdas",
-      "comments": [],
-      "gif": "",
-      "time": "12:39 · Jul 28, 2022",
-      "supervillain": "Dr. Light",
-      "reactions": {
-        "like": 1,
-        "love": 0,
-        "hate": 0
-      }
-    },
-    {
-      "id": 3,
-      "title": "ewqeqwe",
-      "text": "qweqweqweq",
-      "comments": [],
-      "gif": "",
-      "time": "12:40 · Jul 28, 2022",
-      "supervillain": "Stompa",
+      "time": "16:34 · Jul 28, 2022",
+      "supervillain": "Crimson Dynamo",
       "reactions": {
         "like": 0,
-        "love": 0,
-        "hate": 0
-      }
-    },
-    {
-      "id": 4,
-      "title": "dasdsa",
-      "text": "dasdas",
-      "comments": [],
-      "gif": "",
-      "time": "12:41 · Jul 28, 2022",
-      "supervillain": "MODOK",
-      "reactions": {
-        "like": 5,
         "love": 0,
         "hate": 0
       }

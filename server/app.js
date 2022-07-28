@@ -200,16 +200,13 @@ app.post("/postPage/:id", (req, res) => {
         }
     } else if (req.body.button == "Delete journal entry") {
             // DELETE request to remove a post from post.JSON
-        
             let id = req.params.id;
             let currentData = getData();
-      
              //Iterate through data to match the ID
             currentData.posts.forEach((post) => {
                 if (post.id == id) {
-                  console.log("delete");
             //Cut out the data with the matching ID and rewrite the file
-                    currentData.posts.splice(id - 1, 1);
+                    currentData.posts.splice(id, 1);
                     let myJSON = JSON.stringify(currentData, null, 2);
                     fs.writeFileSync("./public/posts.json", myJSON);
                     res.redirect("/");
