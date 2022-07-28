@@ -35,7 +35,7 @@
           <div class="entry">
             <div>
               <a
-                href="/postPage/<%=currentData.posts[i].id%>"
+                href="/postPage/<%=currentData.posts[i].title%>"
                 class="entry-title"
               >
                 <h2><%=currentData.posts[i].title%></h2>
@@ -68,13 +68,17 @@
 
               <div class="emoji-divs like">
                 <i class="fa-regular fa-thumbs-up fa-lg"></i
-                ><span class="like-reaction"
+                ><span 
+                  class="like-reaction"
+                  postId="<%=currentData.posts[i].id%>"
                   ><%=currentData.posts[i].reactions["like"]%></span
                 >
               </div>
               <div class="emoji-divs heart">
                 <i class="fa-regular fa-heart fa-lg heart-reaction"></i
-                ><span class="love-reaction"
+                ><span 
+                  class="love-reaction"
+                  postId="<%=currentData.posts[i].id%>"
                   ><%=currentData.posts[i].reactions["love"]%></span
                 >
               </div>

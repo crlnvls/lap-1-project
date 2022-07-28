@@ -52,6 +52,25 @@ const likes = document.getElementsByClassName("like");
     const span = holder.querySelector("span");
     // change the text
     span.textContent = 1 + Number(span.textContent);
+
+    // tell the server that the post have been liked
+    const url = "http://localhost:3000/reactions";
+    const options = {
+      method: "post",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        reaction: "like",
+        post: span.getAttribute("postId"),
+      }),
+    };
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((data) => {})
+      .catch((err) => {
+        console.log(err);
+      });
   });
 });
 
@@ -66,6 +85,25 @@ const loves = document.getElementsByClassName("heart");
     const span = holder.querySelector("span");
     // change the text
     span.textContent = 1 + Number(span.textContent);
+
+    // tell the server that the post have been liked
+    const url = "http://localhost:3000/reactions";
+    const options = {
+      method: "post",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        reaction: "love",
+        post: span.getAttribute("postId"),
+      }),
+    };
+    fetch(url, options)
+      .then((res) => res.json())
+      .then((data) => {})
+      .catch((err) => {
+        console.log(err);
+      });
   });
 });
 

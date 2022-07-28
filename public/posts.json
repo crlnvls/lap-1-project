@@ -4,11 +4,15 @@
       "id": 1,
       "title": "title 1",
       "text": "text for the first post",
-      "comments": ["wow the first post!", "aa", "aa"],
+      "comments": [
+        "wow the first post!",
+        "aa",
+        "aa"
+      ],
       "reactions": {
-        "like": 0,
-        "love": 0,
-        "hate": 0
+        "like": 2,
+        "love": 1,
+        "hate": 20
       }
     },
     {
@@ -18,8 +22,8 @@
       "comments": [],
       "reactions": {
         "like": 0,
-        "love": 0,
-        "hate": 0
+        "love": 3,
+        "hate": 13
       }
     }
   ]
