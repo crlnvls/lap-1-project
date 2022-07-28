@@ -14,15 +14,15 @@ function getGif() {
     let newUrl = `${url}${searchedGif}`;
     console.log(newUrl);
     fetch(newUrl)
-      .then((response) => response.json())
-      .then((content) => {
+      .then(response => response.json())
+      .then(content => {
         for (let i = 0; i < content.data.length; i++) {
           let img = document.getElementById(`gif${i}`);
           img.src = content.data[i].images.downsized.url;
           img.alt = content.data[i].title;
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
   });
@@ -123,7 +123,7 @@ const hates = document.getElementsByClassName("hate");
     span.textContent = 1 + Number(span.textContent);
 
     // tell the server that the post have been liked
-    const url = "https://x-diary.herokuapp.com/reactions";
+    const url = "https://x-diary.herokuapp.com/reactionshttp://localhost:3000/reactions";
     const options = {
       method: "post",
       headers: {
