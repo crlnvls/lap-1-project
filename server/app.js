@@ -187,9 +187,9 @@ app.post("/postPage/:id", (req, res) => {
                     text: currentData.posts[i].text,
                     comments: currentData.posts[i].comments,
                     id: currentData.posts[i].id,
-                    gif: currentData.posts[i].gif,
-                    date: currentData.posts[i].time,
-                    supervillain: currentData.posts[i].supervillain
+                    // gif: currentData.posts[i].gif,
+                    // date: currentData.posts[i].time,
+                    // supervillain: currentData.posts[i].supervillain
             
                 })
             }
