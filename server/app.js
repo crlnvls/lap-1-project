@@ -4,12 +4,8 @@ const fs = require("fs");
 const ejs = require("ejs");
 const _ = require("lodash");
 const path = require("path");
-<<<<<<< HEAD
-let posts = "./public/posts.json";
-=======
 const supervillains = require('supervillains');
-let posts = ("../public/posts.json");
->>>>>>> 57c78816f3b5697a8cbfb1d9f436b1b5ad398f4b
+let posts = ("./public/posts.json");
 // const cors = require("cors");
 const app = express();
 
@@ -19,15 +15,6 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-<<<<<<< HEAD
-=======
-app.use(express.static("../client/public"));
-
-app.use(express.static("public"));
-app.use(express.static("views"));
-app.use(express.static("../views"));
-app.use(express.static("../public"));
->>>>>>> 57c78816f3b5697a8cbfb1d9f436b1b5ad398f4b
 
 //Function to retrieve data for posts.json
 function getData() {
@@ -144,7 +131,7 @@ app.post("/postPage/:id", (req, res) => {
     if (postId === currentData.posts[i].id) {
       currentData.posts[i].comments.push(newComment)
       let myJSON = JSON.stringify(currentData, null, 2);
-      fs.writeFileSync("../public/posts.json", myJSON);
+      fs.writeFileSync("./public/posts.json", myJSON);
       res.render(__dirname + "/../views/postPage", {
         title: currentData.posts[i].title, 
         text: currentData.posts[i].text, 
@@ -159,8 +146,9 @@ app.post("/postPage/:id", (req, res) => {
 
 })
 
-// this is a function to get the time and date a post was made
 
+
+// This is a function to get the time and date a post was made
 function getPostDate() {
 
   let date = new Date()
@@ -209,33 +197,23 @@ function getPostDate() {
 //Add count reactions
 app.post("/reactions", (req, res) => {
   const currentData = getData();
-
   let postId = Number(req.body.post)
-
   //Find the post with that id
   let reactionType = req.body.reaction
-  
+  //reaction.hate
   for (let i = 0; i < currentData.posts.length; i++) {
     if (currentData.posts[i].id === postId) {
       currentData.posts[i].reactions[reactionType] += 1
       let myJSON = JSON.stringify(currentData, null, 2);
-<<<<<<< HEAD
       fs.writeFileSync("./public/posts.json", myJSON);
-      //console.log(currentData.posts[i].reactions[`${reactionType}`])
-=======
-      fs.writeFileSync("../public/posts.json", myJSON);
->>>>>>> 25bed20cbb21e71d30860362177fe6b8860d4924
     }
   }
-<<<<<<< HEAD
 
 });
 
-=======
-})
->>>>>>> 57c78816f3b5697a8cbfb1d9f436b1b5ad398f4b
+// Response to POST request on postPage 
 app.post("/postPage/:id", (req, res) => {
-
+// Listens to which button has been selected
     if (req.body.button == "Post") {
         let postId = Number(req.params.id)
         let newComment = req.body.comment
@@ -284,8 +262,3 @@ app.post("/postPage/:id", (req, res) => {
     
 
 module.exports = app;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 57c78816f3b5697a8cbfb1d9f436b1b5ad398f4b
