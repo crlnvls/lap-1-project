@@ -200,29 +200,6 @@ app.post("/postPage/:id", (req, res) => {
 
 })
 
-
-// Add comments
-// app.post("/comments/:id", (req, res) => {
-//   let id = req.params.id;
-//   let newComment = req.body.comments;
-//   let newData = getData();
-//   newData.posts.forEach((post) => {
-//     if (post.id == id) {
-//       post.comments.push(newComment);
-//     }
-//   });
-//   let myJson = JSON.stringify(newData, null, 2);
-//   fs.writeFileSync("../public/post.json", myJson, (err) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log("../public/post.json");
-//     }
-//   });
-//   res.redirect("/");
-// });
-
-
 // this is a function to get the time and date a post was made
 
 function getPostDate() {
@@ -273,22 +250,17 @@ function getPostDate() {
 //Add count reactions
 app.post("/reactions", (req, res) => {
   const currentData = getData();
-  //console.log(typeof req.body.reaction); //string
-  //console.log(typeof req.body.post) //string
+
   let postId = Number(req.body.post)
-  //console.log(postId, typeof postId) //number
+
   //Find the post with that id
   let reactionType = req.body.reaction
-  //reaction.hate
-  //obj.reactions["hate"]
-  //console.log(typeof currentData[0].reactions.like) // 0 number
-  //console.log(currentData.posts[0].reactions[`${reactionType}`]) // <========== OH MY GODDDD!!!! ==========>
+  
   for (let i = 0; i < currentData.posts.length; i++) {
     if (currentData.posts[i].id === postId) {
       currentData.posts[i].reactions[reactionType] += 1
       let myJSON = JSON.stringify(currentData, null, 2);
       fs.writeFileSync("../public/posts.json", myJSON);
-      //console.log(currentData.posts[i].reactions[`${reactionType}`])
     }
   }
 })
