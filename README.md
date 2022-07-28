@@ -77,4 +77,13 @@ X-diary is an anonymous journaling site. It allows you to post journal entries (
 * Creating an if/else statement that listens to two POST requests and decides what to do with it.
 * Creating tests for the backend routing.
 
+## Bugs
+
+* Currently the delete post function is correctly taking in the ID of the post but is then deleting the incorrect post due to it selecting the index position of the number. 
+
+## Future features
+
+* Search for a journal title
+* Add GIFS into comments
+* Reactions to comments
 
