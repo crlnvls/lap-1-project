@@ -73,7 +73,7 @@ app.post("/post", (req, res) => {
   let gif = req.body.gif
   let date = getPostDate()
   let supervillain = supervillains.random()
-  let comments = req.body.comments;
+  //let comments = req.body.comments;
   storeData({
     id: id,
     title: title,
