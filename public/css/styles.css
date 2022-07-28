@@ -16,6 +16,15 @@ body {
     margin-left: 10%;
 }
 
+hr {
+    color: #2C3333;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 a {
     text-decoration: none;
 }
@@ -50,7 +59,8 @@ a {
 /* main */
 
 .journals {
-    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
     justify-content: space-evenly;
     align-content: space-between;
 }
@@ -318,4 +328,8 @@ input[type=submit]:hover {
 
   .postPageContainer {
     flex-direction: column;
+  }
+
+  .postPageComments {
+    margin-left: 2%;
   }

@@ -23,21 +23,31 @@
         </header>
         <main>
             <div class="container journals">
-            <%  for (let i = 0; i < currentData.posts.length; i++) { %>
+                <%    for (let i = 0; i < currentData.posts.length; i++) { %>
                     <div class="journal-container">
                         <div class="entry">
-                            <a href="/postPage/<%=currentData.posts[i].id%>" class="entry-title">
-                                <h2><%=currentData.posts[i].title%></h2>
-                             </a>
+                            <div>
+                                <a href="/postPage/<%=currentData.posts[i].id%>" class="entry-title">
+                                    <h2><%= currentData.posts[i].title%></h2>
+                                 </a>
+                            </div>
+                            <hr>
                              <div class="entry-info">
                                 <i class="far fa-user fa-lg icon"></i>
                                 <div>
-                                    <span>willow oceanseed</span> <br>
-                                    <span>2 hours ago</span>
+                                    <span><%= currentData.posts[i].supervillain %></span> <br>
+                                    <span><%= currentData.posts[i].time %></span>
                                 </div>
                              </div>
-                            <p><%=currentData.posts[i].text.substring(0, 100) + " ..."%></p>
-                            <a href="/postPage/<%=currentData.posts[i].id%>">Read More</a>
+                            <hr>
+                            <div>
+                                <p><%=currentData.posts[i].text.substring(0, 100) + " ..."%></p>
+                                <img src="<%= currentData.posts[i].gif %>" alt="">
+                            </div>
+                            <div>
+                                <a href="/postPage/<%=currentData.posts[i].id%>" class="read-more">Read More</a>
+                             </div>
+                             <hr>
                             <div class="entry-interactions">
                                 <div class="emoji-divs comment"><a href="" class="comment-link"><i class="fa-regular fa-comment fa-lg"></i><span> <%=currentData.posts[i].comments.length%> </span></a></div>
                                 <div class="emoji-divs like">

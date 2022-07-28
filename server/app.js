@@ -4,7 +4,12 @@ const fs = require("fs");
 const ejs = require("ejs");
 const _ = require("lodash");
 const path = require("path");
+<<<<<<< HEAD
 let posts = "./public/posts.json";
+=======
+const supervillains = require('supervillains');
+let posts = ("../public/posts.json");
+>>>>>>> 57c78816f3b5697a8cbfb1d9f436b1b5ad398f4b
 // const cors = require("cors");
 const app = express();
 
@@ -14,6 +19,15 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+<<<<<<< HEAD
+=======
+app.use(express.static("../client/public"));
+
+app.use(express.static("public"));
+app.use(express.static("views"));
+app.use(express.static("../views"));
+app.use(express.static("../public"));
+>>>>>>> 57c78816f3b5697a8cbfb1d9f436b1b5ad398f4b
 
 //Function to retrieve data for posts.json
 function getData() {
@@ -46,7 +60,6 @@ app.get("/post", (req, res) => {
 
 //POST request to post new entry to post.JSON
 app.post("/post", (req, res) => {
-  data = req.body;
   currentData = getData();
   // Function to iterate through the data to find the highest ID
   let highestId = 0;
@@ -59,21 +72,28 @@ app.post("/post", (req, res) => {
   let id = highestId + 1;
   let title = req.body.title;
   let text = req.body.text;
-  let comments = req.body.comments;
-
+  let gif = req.body.gif
+  let date = getPostDate()
+  let supervillain = supervillains.random()
+  //let comments = req.body.comments;
   storeData({
     id: id,
     title: title,
     text: text,
     comments: [],
+    gif: gif,
+    time: date,
+    supervillain: supervillain,
     reactions: {
-        like: 0,
-        love: 0,
-        hate: 0,
-    },
+      like: 0,
+      love: 0,
+      hate: 0,
+  },
   });
   res.redirect("/");
 });
+    
+  
 
 
 
@@ -105,12 +125,109 @@ app.post("/postPage/:postName", (req, res) => {
         title: currentData.posts[i].title,
         text: currentData.posts[i].text,
         comments: currentData.posts[i].comments,
-        time: currentData.posts[i].time,
+        id: currentData.posts[i].id,
+        gif: currentData.posts[i].gif,
+        date: currentData.posts[i].time,
+        supervillain : currentData.posts[i].supervillain,
+        time: currentData.posts[i].time
       });
     }
   }
 });
 
+app.post("/postPage/:id", (req, res) => {
+  let postId = Number(req.params.id)
+  let newComment = req.body.comment
+  currentData = getData();
+
+  for (let i = 0; i < currentData.posts.length; i++) {
+    if (postId === currentData.posts[i].id) {
+      currentData.posts[i].comments.push(newComment)
+      let myJSON = JSON.stringify(currentData, null, 2);
+      fs.writeFileSync("../public/posts.json", myJSON);
+      res.render(__dirname + "/../views/postPage", {
+        title: currentData.posts[i].title, 
+        text: currentData.posts[i].text, 
+        comments: currentData.posts[i].comments, 
+        id: currentData.posts[i].id,
+        gif: currentData.posts[i].gif,
+        date: currentData.posts[i].time,
+        supervillain: currentData.posts[i].supervillain
+      })
+    }
+  }
+
+})
+
+
+// Add comments
+// app.post("/comments/:id", (req, res) => {
+//   let id = req.params.id;
+//   let newComment = req.body.comments;
+//   let newData = getData();
+//   newData.posts.forEach((post) => {
+//     if (post.id == id) {
+//       post.comments.push(newComment);
+//     }
+//   });
+//   let myJson = JSON.stringify(newData, null, 2);
+//   fs.writeFileSync("../public/post.json", myJson, (err) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("../public/post.json");
+//     }
+//   });
+//   res.redirect("/");
+// });
+
+
+// this is a function to get the time and date a post was made
+
+function getPostDate() {
+
+  let date = new Date()
+
+  hour = date.getHours() 
+  hour = hour < 10 ? `0${hour}` : hour
+  minute = date.getMinutes()
+  minute = minute < 10 ? `0${minute}` : minute
+  day = date.getDate()
+  month = date.getMonth()
+  year = date.getFullYear()
+
+  //minute = minute < 10 ? `0${minute}` : minute
+
+  if (month === 1) {
+      month = "Jan"
+  } else if (month === 2) {
+      month = "Feb"
+  } else if (month === 3) {
+      month = "Mar"
+  } else if (month === 4) {
+      month = "Apr"
+  } else if (month === 5) {
+      month = "May"
+  } else if (month === 6) {
+      month = "Jul"
+  } else if (month === 7) {
+      month = "Aug"
+  } else if (month === 8) {
+      month = "Sep"
+  } else if (month === 9) {
+      month = "Oct"
+  } else if (month === 10) {
+      month = "Nov"
+  } else if (month === 11) {
+      month = "Dec"
+  } else if (month === 0) {
+      
+  }
+
+  let postDate = `${hour}:${minute} · ${month} ${day}, ${year}`
+
+  return postDate
+}
 
 //Add count reactions
 app.post("/reactions", (req, res) => {
@@ -133,9 +250,13 @@ app.post("/reactions", (req, res) => {
       //console.log(currentData.posts[i].reactions[`${reactionType}`])
     }
   }
+<<<<<<< HEAD
 
 });
 
+=======
+})
+>>>>>>> 57c78816f3b5697a8cbfb1d9f436b1b5ad398f4b
 app.post("/postPage/:id", (req, res) => {
 
     if (req.body.button == "Post") {
@@ -186,3 +307,8 @@ app.post("/postPage/:id", (req, res) => {
     
 
 module.exports = app;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 57c78816f3b5697a8cbfb1d9f436b1b5ad398f4b

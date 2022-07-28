@@ -1,15 +1,15 @@
 {
   "posts": [
+    
     {
-      "id": 1,
-      "title": "title 1",
-      "text": "text for the first post",
-      "comments": [
-        "wow the first post!",
-        "will this show?",
-        "and this one?"
-      ],
-      "reactions": {
+      "id": 7,
+      "title": "a",
+      "text": "a",
+      "comments": [],
+      "gif": "",
+      "time": "0:18 · Jul 28, 2022",
+      "supervillain": "Terrible Trio",
+      "reactions" : {
         "like": 0,
         "love": 0,
         "hate": 0

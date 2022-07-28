@@ -28,17 +28,20 @@ function getGif() {
   });
 }
 
-function pasteGif() {
-  let elements = document.querySelectorAll(".gif-size");
+function pasteGif () {
+    let elements = document.querySelectorAll(".gif-size")
+    let gifInput = document.querySelector("input[type=hidden]") //select hidden input
 
-  for (let i = 0; i < elements.length; i++) {
-    elements[i].addEventListener("click", (e) => {
-      e.preventDefault();
-      let gifImg = document.getElementById("gifAttachment");
-      gifImg.src = elements[i].src;
-      gifImg.alt = elements[i].alt;
-    });
-  }
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].addEventListener("click", e => {
+            e.preventDefault()
+            let gifImg = document.getElementById("gifAttachment")
+            gifImg.src = elements[i].src
+            gifImg.alt = elements[i].alt
+            gifInput.value = elements[i].src // on click, change value of hidden input to the clicked gifs link
+        })
+    }
+        
 }
 
 const likes = document.getElementsByClassName("like");
