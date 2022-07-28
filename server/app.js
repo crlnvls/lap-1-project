@@ -4,48 +4,54 @@ const fs = require("fs");
 const ejs = require("ejs");
 const _ = require("lodash");
 const path = require("path");
-let posts = ("./public/posts.json");
+let posts = "../public/posts.json";
 // const cors = require("cors");
 const app = express();
-
 
 app.use(express.json());
 // app.use(cors());
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
 app.use(express.static("../client/public"));
 
 
 //Function to retrieve data for posts.json
+
 function getData() {
-  let data = fs.readFileSync("./public/posts.json");
+  let data = fs.readFileSync("../public/posts.json");
   data = JSON.parse(data);
   return data;
 }
 
 //Function to store data
 function storeData(req) {
-  data = getData("./public/posts.json");
+  data = getData("../public/posts.json");
   data.posts.push(req);
   let myJSON = JSON.stringify(data, null, 2);
-  fs.writeFileSync("./public/posts.json", myJSON);
+  fs.writeFileSync("../public/posts.json", myJSON);
 }
 
+
 // GET request for homepage
+
 app.get("/", (req, res) => {
   currentData = getData();
-  res.render("index", { currentData: currentData });
+  //console.log(currentData);
+  res.render(__dirname + "/../views/index", { currentData: currentData });
 });
 
 //GET request for posting page
 app.get("/post", (req, res) => {
+
    
     res.render("post");
         
 });
 
 //POST request to post new entry to post.JSON
+
 app.post("/post", (req, res) => {
   data = req.body;
   currentData = getData();
@@ -61,6 +67,7 @@ app.post("/post", (req, res) => {
   let title = req.body.title;
   let text = req.body.text;
   let comments = req.body.comments;
+
   storeData({
     id: id,
     title: title,
@@ -75,6 +82,7 @@ app.post("/post", (req, res) => {
   res.redirect("/");
 });
 
+// Stores reactions to json file
 
 // // POST request to add a comment
 // app.post("/postPage/:id", (req, res) => {
@@ -118,6 +126,7 @@ app.delete("/posts/:id", (req, res) => {
 });
 
 
+
 app.get("/postPage/:id", (req, res) => {
     let postId = Number(req.params.id);
     currentData = getData();
@@ -129,11 +138,51 @@ app.get("/postPage/:id", (req, res) => {
                 text: currentData.posts[i].text,
                 comments: currentData.posts[i].comments,
                 id: currentData.posts[i].id
+
       });
     }
   }
 });
 
+app.post("/postPage/:postName", (req, res) => {
+  currentData = getData()
+  let postName = _.lowerCase(req.params.postName);
+  let newComment = req.body.comment;
+  for (let i = 0; i < currentData.posts.length; i++) {
+    if (_.lowerCase(currentData.posts[i].title) === postName) {
+      currentData.posts[i].comments.push(newComment);
+      res.render(__dirname + "/../views/postPage", {
+        title: currentData.posts[i].title,
+        text: currentData.posts[i].text,
+        comments: currentData.posts[i].comments,
+        time: currentData.posts[i].time,
+      });
+    }
+  }
+});
+
+
+//Add count reactions
+app.post("/reactions", (req, res) => {
+  const currentData = getData();
+  //console.log(typeof req.body.reaction); //string
+  //console.log(typeof req.body.post) //string
+  let postId = Number(req.body.post)
+  //console.log(postId, typeof postId) //number
+  //Find the post with that id
+  let reactionType = req.body.reaction
+  //reaction.hate
+  //obj.reactions["hate"]
+  //console.log(typeof currentData[0].reactions.like) // 0 number
+  //console.log(currentData.posts[0].reactions[`${reactionType}`]) // <========== OH MY GODDDD!!!! ==========>
+  for (let i = 0; i < currentData.posts.length; i++) {
+    if (currentData.posts[i].id === postId) {
+      currentData.posts[i].reactions[reactionType] += 1
+      let myJSON = JSON.stringify(currentData, null, 2);
+      fs.writeFileSync("../public/posts.json", myJSON);
+      //console.log(currentData.posts[i].reactions[`${reactionType}`])
+    }
+  }
 
 app.post("/postPage/:id", (req, res) => {
 
@@ -186,3 +235,5 @@ app.post("/postPage/:id", (req, res) => {
 
 module.exports = app;
 
+
+  
