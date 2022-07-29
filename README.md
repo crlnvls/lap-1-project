@@ -59,6 +59,22 @@ X-diary is an anonymous journaling site. It allows you to post journal entries (
 
 
 
+## Build Process
+
+# Backend
+
+In the backend we started with requiring in the modules we would need to get make the programme such as express. We then moved onto creating each of the app.GET paths for each of the pages to make sure we could connect to each of them. After this we spoke to the front end team to start creating routes for each of the functions that they were planning to include for example the app.POST to post a new journal to the website.
+
+# Frontend
+
+In the frontend we started with choosing how we wanted to handle displaying the journal cards on the homepage for which we chose to work with EJS due to its ability to easily create templates and display them when called upon. We then moved onto working out how to dispay GIF's and get them to send and re-display once posted. This involved converting the source of the GIF into JSON to be stored and then reconverted to a string to be called upon to display again. 
+
+# Joining together
+
+We weere intiially going to display the front end on Netlify but due to EJS not using static html files we were unable to di this. This caused us to have to knit the two files together into one app to be fully deployed on Heroku. This initially caused some issues as we had to reorganise a lot of the routing to make sure all the necessary assets we are able to be called upon.
+
+
+
 ## Wins & Challeneges
 
 # Challenges
