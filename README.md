@@ -48,10 +48,10 @@ X-diary is an anonymous journaling site. It allows you to post journal entries (
     ![add a comment](/READMEAssets/addacomment.gif)
 
 7. Along the bottom of each journal entry are a list of reactions.
-1. The first shows the number of comments the entry has recieved.
-2. The second shows the number of likes the entry has recieved.
-3. The third shows the number of love the entry has recieved.
-4. The fourth shows the number of downvotes the entry has recieved.
+    1. The first shows the number of comments the entry has recieved.
+    2. The second shows the number of likes the entry has recieved.
+    3. The third shows the number of love the entry has recieved.
+    4. The fourth shows the number of downvotes the entry has recieved.
     ![react to a post](/READMEAssets/react.gif)
 
 8. To delete a post, navigate to the post, then press the delete post button.
@@ -61,11 +61,11 @@ X-diary is an anonymous journaling site. It allows you to post journal entries (
 
 ## Build Process
 
-# Backend
+# Backend Process
 
 In the backend we started with requiring in the modules we would need to get make the programme such as express. We then moved onto creating each of the app.GET paths for each of the pages to make sure we could connect to each of them. After this we spoke to the front end team to start creating routes for each of the functions that they were planning to include for example the app.POST to post a new journal to the website.
 
-# Frontend
+# Frontend Process
 
 In the frontend we started with choosing how we wanted to handle displaying the journal cards on the homepage for which we chose to work with EJS due to its ability to easily create templates and display them when called upon. We then moved onto working out how to dispay GIF's and get them to send and re-display once posted. This involved converting the source of the GIF into JSON to be stored and then reconverted to a string to be called upon to display again. 
 
