@@ -2,7 +2,7 @@
 
 ## Badges
 
-![licence](https://img.shields.io/github/license/Mike-Mercieca/lap-1-project-front-end) ![version](https://img.shields.io/github/package-json/v/Mike-Mercieca/lap-1-project-front-end/master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) ![version](https://img.shields.io/github/package-json/v/Mike-Mercieca/lap-1-project-front-end/master)
 
 # Product Information
 
